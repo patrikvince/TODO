@@ -10,19 +10,18 @@ class MySqlDB {
     private $kapcs;
 
     public function __construct() {
-       $this->db_szerver = "tanulo23.szf1b.oktatas.szamalk-szalezi.hu";// "localhost";
-        $this->db_felhnev = "c1_tanulo23szf1b";//"root";
-        $this->db_jelszo = "_tanulo23szf1b"; //"";
-        $this->db_nev = "c1ABtanulo23szf1b";//"todo";
+        $this->db_szerver = "tanulo23.szf1b.oktatas.szamalk-szalezi.hu"; 
+        $this->db_felhnev = "c1_tanulo23szf1b"; 
+        $this->db_jelszo = "_tanulo23szf1b"; 
+        $this->db_nev = "c1ABtanulo23szf1b"; 
+//        $this->db_szerver = "localhost";
+//        $this->db_felhnev = "root";
+//        $this->db_jelszo = "";
+//        $this->db_nev = "todo";
         $this->kapcsolat();
     
     }
-
-    ////csefalvay remote
-////$host = "web1.szamalk-szalezi.hu";
-////$fhnev = "c1csefalvay";
-////$jelszo = "csefalvay";
-////$adatbazis = "c1csefalvay";
+    
     public function kapcsolat() {
         $this->kapcs = new mysqli($this->db_szerver, $this->db_felhnev, $this->db_jelszo, $this->db_nev);
         $this->kapcs->set_charset('utf8');
@@ -58,8 +57,8 @@ class MySqlDB {
     //function createData($tablaNeve, $oszlopok, $ertekek){
     function ujRekord($tablaNeve, $oszlopok, $ertekek) {
 //        $this->kapcsolat();
-        $sql = "INSERT INTO " . $tablaNeve . " " . $oszlopok . " VALUES " . $ertekek;
-
+        $sql = "INSERT INTO " . $tablaNeve . " " . $oszlopok . " VALUES (" . $ertekek . ")";
+        echo "Uj rekord felvitele: ". $sql;
         $sql = $this->kapcs->query($sql);
 
         if ($sql == true) {

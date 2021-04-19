@@ -1,14 +1,20 @@
 <?php
 
-$todo = $_POST['todo']; 
-$_datum = $_POST['datum'];
-$allpot = false;
+require_once './MySqlDB.php';
 
-$tablaNeve = "todo";
-$oszlopok = "(todo, datum, allapot)";
-$ertekek = "(\"$todo\", 'datum', $allpot\)";
+$todo = $_POST['todo'];
+$datum = $_POST['datum'];
+$allapot = 0;
 
-$mySql->ujRekord($tablaNeve, $oszlopok, $ertekek);
+if ($todo != "" && $datum != "") {
+    $tablaNeve = "todo";
+    $oszlopok = "(todo, datum, allapot)";
+    $ertekek = "'$todo', '$datum', '$allapot'";
 
-echo json_encode($_POST);
-
+    $mySql = new MySqlDB();
+    $mySql->ujRekord($tablaNeve, $oszlopok, $ertekek);
+    echo $todo . ", " . $datum . ", " . $allapot;
+    echo json_encode($_POST);
+}else{
+    echo 'Nincs megadva feladat!';
+}

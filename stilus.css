@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+img{
+    width: 20px;
+    height: auto;
+}
+
+.athuz{
+    text-decoration: line-through;
+}
